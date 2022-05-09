@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef  } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core'
 
 import PlaceDetails from '../PlaceDetails/PlaceDetails'
@@ -15,9 +15,11 @@ const List = ({ places, childClicked }) => {
     console.log({ childClicked });
 
     useEffect(() => {
-        const refs = Array(places.length).fill().map((_, i) => elRefs[i] || createRef());
+        if(places){
+            const refs = Array(places.length).fill().map((_, i) => elRefs[i] || createRef());
 
-        setElRefs(refs);
+            setElRefs(refs);
+        }
     }, [places]);
 
 
