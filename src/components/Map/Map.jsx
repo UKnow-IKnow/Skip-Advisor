@@ -13,7 +13,6 @@ const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked }
 
 
 
-
     return(
         <div className={classes.mapContainer}>
             <GoogleMapReact

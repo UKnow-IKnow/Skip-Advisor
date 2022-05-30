@@ -16,7 +16,7 @@ const List = ({ places, childClicked, isLoading }) => {
 
     useEffect(() => {
         if(places){
-            const refs = Array(places.length).fill().map((_, i) => elRefs[i] || createRef());
+            const refs = Array(places?.length).fill().map((_, i) => elRefs[i] || createRef());
             setElRefs(refs);
         }
     }, [places]);
@@ -31,7 +31,7 @@ const List = ({ places, childClicked, isLoading }) => {
             { isLoading ? (
                 
                 <div className={classes.loading}>
-                    <CircularProgress size="5rem />
+                    <CircularProgress size="5rem"/>
                 </div>
             ) : (
                 <>
@@ -54,7 +54,7 @@ const List = ({ places, childClicked, isLoading }) => {
             </FormControl>
             <Grid container spacing={3} className={classes.list}>
                 {places?.map((place, i) => (
-                    <Grid item key={i} xs={12}>
+                    <Grid ref={elRefs[i]} item key={i} xs={12}>
                         <PlaceDetails 
                             place={place}
                             selected={ Number(childClicked) === i } 
