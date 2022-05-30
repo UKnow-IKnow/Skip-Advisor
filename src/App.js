@@ -10,6 +10,7 @@ import Map from "./components/Map/Map";
 const App = () => {
     const [places, setPlaces] = useState([]);
     const [childClicked, setChildClicked] = useState(null);
+    const [filteredPlaces, setfilteredPlaces] = useState([]);
 
     const [coordinates, setCoordinates] = useState({});
     const [bounds, setBounds] = useState({});
@@ -24,7 +25,11 @@ const App = () => {
         })
     }, []);
 
-    useEffect();
+    useEffect(() => {
+        const filteredPlaces = places.filter((place) => place.rating > rating);
+
+        setfilteredPlaces(filteredPlaces);
+    }, [rating]);
 
     useEffect(() => {
 
@@ -37,6 +42,7 @@ const App = () => {
                 .then((data) => {
                     console.log(data);
                     setPlaces(data);
+                    setfilteredPlaces([]);
                     setIsLoading(false); 
                 })
         }
@@ -49,7 +55,7 @@ const App = () => {
             <Grid container spacing={3} style={{ width: '100%' }}>
                 <Grid item xs={12} md={4}>
                     <List 
-                        places={places} 
+                        places={filteredPlaces.length ? filteredPlaces : places} 
                         childClicked={childClicked}
                         isLoading={isLoading}
                         type={type}
@@ -63,7 +69,7 @@ const App = () => {
                         setCoordinates={setCoordinates}
                         setBounds={setBounds}
                         coordinates={coordinates}
-                        places={places} 
+                        places={filteredPlaces.length ? filteredPlaces : places} 
                         setChildClicked={setChildClicked}
                     />
                 </Grid>
