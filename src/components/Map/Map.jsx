@@ -6,6 +6,8 @@ import  Rating  from '@material-ui/lab/Rating';
 
 import useStyles from './styles';
 
+import mapStyles from './mapStyles';
+
 
 const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData }) => {
     const classes = useStyles();
